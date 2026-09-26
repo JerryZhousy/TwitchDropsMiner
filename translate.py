@@ -219,6 +219,10 @@ class GUIHelp(TypedDict):
     getting_started: str
     getting_started_text: str
     invalidate: GUIHelpInvalidate
+    steam_import: str
+    steam_import_text: str
+    steam_api_key_link: str
+    steam_id_link: str
 
 
 class GUIMessages(TypedDict):
@@ -464,6 +468,26 @@ default_translation: Translation = {
                 "the \"Priority mode\", requires you to press on \"Reload\" "
                 "for the changes to take an effect."
             ),
+            "steam_import": "Steam Library Import",
+            "steam_import_text": (
+                "The Settings tab can automatically add games you own on Steam "
+                "to the Priority list.\n"
+                "1. Find your Steam ID - open your Steam profile in a browser and copy "
+                "the 17-digit number from the URL, e.g. "
+                "steamcommunity.com/profiles/76561198000000000. "
+                "If your profile uses a custom URL, enter that name as the Steam ID, "
+                "or look it up via the link below.\n"
+                "2. Get a free Steam Web API key via the link below - log in with your "
+                "Steam account, enter any domain name for the registration "
+                "(e.g. \"example.com\") and the generated key will be displayed. "
+                "The key belongs to your account, so use the Steam ID of that same account.\n"
+                "3. Fill in both fields in the Settings tab and press on \"⇩ Add from Steam\". "
+                "Only the games that match available Twitch drop campaigns will be added. "
+                "If nothing matches, double-check the campaign's availability "
+                "or press on \"Reload\" to fetch the latest campaigns first."
+            ),
+            "steam_api_key_link": "Steam Web API key registration: https://store.steampowered.com/dev/apikey",
+            "steam_id_link": "Steam ID lookup: https://steamid.io",
             "invalidate": {
                 "button": "Invalidate",
                 "text": "Invalidate the authentication token (log out):",

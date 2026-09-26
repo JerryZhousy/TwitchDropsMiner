@@ -2223,6 +2223,25 @@ class HelpTab:
             getstarted, text=_("gui", "help", "getting_started_text"), wraplength=self.WIDTH
         ).grid(sticky="nsew")
 
+        # Steam import
+        steam_help = ttk.LabelFrame(
+            center_frame, padding=(4, 0, 4, 4), text=_("gui", "help", "steam_import")
+        )
+        steam_help.grid(column=0, row=(irow := irow + 1), sticky="nsew", padx=2)
+        ttk.Label(
+            steam_help, text=_("gui", "help", "steam_import_text"), wraplength=self.WIDTH
+        ).grid(sticky="nsew")
+        LinkLabel(
+            steam_help,
+            link=steam.API_KEY_URL,
+            text=_("gui", "help", "steam_api_key_link"),
+        ).grid(sticky="nsew")
+        LinkLabel(
+            steam_help,
+            link="https://steamid.io",
+            text=_("gui", "help", "steam_id_link"),
+        ).grid(sticky="nsew")
+
         # Invalidate button
         invalidate_frame = ttk.Frame(bottom_frame)
         bottom_frame.columnconfigure(0, weight=1)  # center within the column
