@@ -486,7 +486,7 @@ default_translation: Translation = {
                 "If nothing matches, double-check the campaign's availability "
                 "or press on \"Reload\" to fetch the latest campaigns first."
             ),
-            "steam_api_key_link": "Steam Web API key registration: https://store.steampowered.com/dev/apikey",
+            "steam_api_key_link": "Steam Web API key registration: https://steamcommunity.com/dev/apikey",
             "steam_id_link": "Steam ID lookup: https://steamid.io",
             "invalidate": {
                 "button": "Invalidate",

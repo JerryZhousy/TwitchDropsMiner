@@ -23,8 +23,8 @@ _SPACES_PATTERN = re.compile(r"\s+")
 
 # NOTE: the old anonymous community games list endpoint (games?xml=1)
 # redirects to the login page now, so a Steam Web API key is required.
-# Free keys are available at: https://store.steampowered.com/dev/apikey
-API_KEY_URL = "https://store.steampowered.com/dev/apikey"
+# Free keys are available at: https://steamcommunity.com/dev/apikey
+API_KEY_URL = "https://steamcommunity.com/dev/apikey"
 
 
 def normalize_game_name(name: str) -> str:

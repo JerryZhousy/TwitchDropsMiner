@@ -176,7 +176,7 @@
             "getting_started_text": "1. 在应用程序中登录您的Twitch账户。\n2. 确保您想领取掉宝的所有游戏的账户都已关联到您的Twitch账户。\n3. 若您想挖掘所有掉宝，请在“掉宝挖掘模式”中选择“仅观看优先列表中的游戏”以外的模式，然后点击“刷新”。\n4. 若您想优先挖掘特定游戏的掉宝，请在“优先列表”中按照挖掘优先级顺序排列游戏。程序将尝试先挖掘列表顶部的游戏，然后再挖掘后面的游戏。\n5. 勾选“仅观看优先列表中的游戏”时，不会挖掘不在“优先列表”中的游戏。\n6. 在“排除列表”中添加永不挖掘的游戏。\n7. 更改任一列表的内容，或更改“仅观看优先列表中的游戏”勾选状态后，需要手动点击“刷新”才能使改动生效。",
             "steam_import": "Steam 游戏库导入",
             "steam_import_text": "设置页可以把你在 Steam 上拥有的游戏自动加入优先级列表。\n1. 查找你的 Steam ID——在浏览器打开你的 Steam 个人资料页，从网址中复制那串 17 位数字，例如 steamcommunity.com/profiles/76561198000000000。如果你的资料页使用了自定义网址，可以直接填那个自定义名称作为 Steam ID，或通过下方链接查询。\n2. 通过下方链接免费申请 Steam Web API 密钥——用你的 Steam 账号登录，注册时随便填一个域名（例如 example.com），生成的密钥会直接显示。密钥属于你自己的账号，因此 Steam ID 请填同一个账号的。\n3. 在设置页填好这两项，然后点击“⇩ 从 Steam 添加”。只会添加与当前可用 Twitch 掉宝活动匹配的游戏。如果没有匹配到，请先点击“重新加载”获取最新活动再试。",
-            "steam_api_key_link": "Steam Web API 密钥申请：https://store.steampowered.com/dev/apikey",
+            "steam_api_key_link": "Steam Web API 密钥申请：https://steamcommunity.com/dev/apikey",
             "steam_id_link": "Steam ID 查询：https://steamid.io",
             "invalidate": {
                 "button": "退出登录",
