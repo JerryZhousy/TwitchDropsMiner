@@ -92,3 +92,11 @@ class GQLException(RequestException):
     """
     def __init__(self, message: str):
         super().__init__(message)
+
+
+class SteamException(MinerException):
+    """
+    Raised when a Steam library request returns an error response.
+    """
+    def __init__(self, message: str):
+        super().__init__(message)

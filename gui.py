@@ -35,8 +35,9 @@ if sys.platform == "darwin":
 
 from translate import _
 from cache import ImageCache
-from exceptions import MinerException, ExitRequest
+from exceptions import MinerException, SteamException, ExitRequest
 from utils import resource_path, set_root_icon, webopen, task_wrapper, Game, _T
+import steam
 from constants import (
     MAX_INT,
     SELF_PATH,
@@ -1806,6 +1807,28 @@ class SettingsPanel:
         ).grid(column=1, row=5, sticky="nsew")
         priority_frame.rowconfigure(5, weight=1)
 
+        # Steam import section
+        steam_frame = ttk.Frame(priority_frame)
+        steam_frame.grid(column=0, row=6, columnspan=2, sticky="ew", pady=(4, 0))
+        ttk.Label(steam_frame, text=_("gui", "settings", "steam", "steam_id")).grid(
+            column=0, row=0, sticky="w"
+        )
+        self._steam_id_entry = ttk.Entry(steam_frame)
+        self._steam_id_entry.insert(0, self._settings.steam_id)
+        self._steam_id_entry.grid(column=1, row=0, columnspan=2, sticky="ew")
+        ttk.Label(steam_frame, text=_("gui", "settings", "steam", "steam_api_key")).grid(
+            column=0, row=1, sticky="w"
+        )
+        self._steam_api_key_entry = ttk.Entry(steam_frame, show="•")
+        self._steam_api_key_entry.insert(0, self._settings.steam_api_key)
+        self._steam_api_key_entry.grid(column=1, row=1, columnspan=2, sticky="ew")
+        steam_frame.columnconfigure(1, weight=1)
+        ttk.Button(
+            steam_frame,
+            text=_("gui", "settings", "steam", "import_button"),
+            command=self.steam_import,
+        ).grid(column=0, row=2, columnspan=3, sticky="ew", pady=(2, 0))
+
         # Exclude section
         exclude_frame = ttk.LabelFrame(
             center_frame, padding=(4, 0, 4, 4), text=_("gui", "settings", "exclude")
@@ -2035,6 +2058,42 @@ class SettingsPanel:
         del self._settings.priority[idx]
         self._settings.alter()
         self.update_priority_choices()
+
+    def steam_import(self) -> None:
+        # persist the entries before importing, so the task sees the current values
+        self._settings.steam_id = self._steam_id_entry.get().strip()
+        self._settings.steam_api_key = self._steam_api_key_entry.get().strip()
+        asyncio.create_task(task_wrapper(self._steam_import_task)())
+
+    async def _steam_import_task(self) -> None:
+        twitch = self._manager._twitch
+        twitch.print(_("gui", "settings", "steam", "import_started"))
+        try:
+            session = await twitch.get_session()
+            library = await steam.fetch_library(session, self._settings)
+        except SteamException as exc:
+            twitch.print(f"Steam import failed: {exc}")
+            return
+        # only games that have a campaign can be prioritized
+        campaign_games: list[str] = [campaign.game.name for campaign in twitch.inventory]
+        matched: list[str] = steam.match_games(library, campaign_games)
+        added: int = 0
+        for game_name in matched:
+            if game_name not in self._settings.priority:
+                self._settings.priority.append(game_name)
+                self._priority_list.insert("end", game_name)
+                added += 1
+        if added:
+            self._settings.alter()
+            self.update_priority_choices()
+        if matched:
+            twitch.print(
+                _("gui", "settings", "steam", "import_done").format(
+                    matched=len(matched), added=added
+                )
+            )
+        else:
+            twitch.print(_("gui", "settings", "steam", "import_none"))
 
     def priority_mode(self, event: tk.Event[ttk.Combobox]) -> None:
         mode_name: str = self._vars["priority_mode"].get()

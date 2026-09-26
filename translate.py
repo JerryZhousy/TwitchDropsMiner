@@ -180,10 +180,20 @@ class GUIPriorityModes(TypedDict):
     low_availability: str
 
 
+class GUISteamSettings(TypedDict):
+    steam_id: str
+    steam_api_key: str
+    import_button: str
+    import_started: str
+    import_done: str
+    import_none: str
+
+
 class GUISettings(TypedDict):
     general: GUISettingsGeneral
     advanced: GUISettingsAdvanced
     priority_modes: GUIPriorityModes
+    steam: GUISteamSettings
     game_name: str
     priority: str
     exclude: str
@@ -396,6 +406,20 @@ default_translation: Translation = {
                 "priority_only": "Priority list only",
                 "ending_soonest": "Ending soonest",
                 "low_availability": "Low availability first",
+            },
+            "steam": {
+                "steam_id": "Steam ID:",
+                "steam_api_key": "Steam Web API key:",
+                "import_button": "⇩ Add from Steam",
+                "import_started": "Importing the Steam library...",
+                "import_done": (
+                    "Steam import complete: {matched} games match your Twitch campaigns, "
+                    "{added} new games added to the priority list."
+                ),
+                "import_none": (
+                    "Steam import complete: none of your Steam games "
+                    "match the available Twitch campaigns."
+                ),
             },
             "game_name": "Game name",
             "priority": "Priority",

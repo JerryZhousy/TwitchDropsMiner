@@ -9,7 +9,7 @@ Every several seconds, the application pretends to watch a particular stream by 
 ### Features:
 
 - Stream-less drop mining - save on bandwidth.
-- Game priority and exclusion lists, allowing you to focus on mining what you want, in the order you want, and ignore what you don't want.
+- Game priority and exclusion lists, allowing you to focus on mining what you want, in the order you want, and ignore what you don't want. Steam library import: automatically add games you own on Steam to the Priority List via the Settings tab (requires a free [Steam Web API key](https://store.steampowered.com/dev/apikey)).
 - Sharded websocket connection, allowing for tracking up to `199` channels at the same time.
 - Automatic drop campaigns discovery based on linked accounts (requires you to do [account linking](https://www.twitch.tv/drops/campaigns) yourself though).
 - Stream tags and drop campaign validation, to ensure you won't end up mining a stream that can't earn you the drop.
